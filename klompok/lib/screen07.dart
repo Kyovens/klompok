@@ -21,6 +21,10 @@ class _Screen07State extends State<Screen07> {
 
   @override
   Widget build(BuildContext context) {
+    final List _body = [
+      const Home01(),
+      const Settings01(),
+    ];
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -81,42 +85,9 @@ class _Screen07State extends State<Screen07> {
       //     ],
       //   ),
       // ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                      child: Image.asset(
-                        'assets/img1.png',
-                        width: 250,
-                      ),
-                    ),
-                    const Positioned(
-                      top: 300,
-                      left: 25,
-                      child: Text(
-                        'Legendary Youngest Son',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-                Stack()
-              ],
-            ),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: _body[_currenIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (val) {},
@@ -163,6 +134,51 @@ class Settings01 extends StatefulWidget {
 class _Settings01State extends State<Settings01> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: SafeArea(
+        child: Container(),
+      ),
+    );
+  }
+}
+
+class Home01 extends StatefulWidget {
+  const Home01({super.key});
+
+  @override
+  State<Home01> createState() => _Home01State();
+}
+
+class _Home01State extends State<Home01> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.all(10.0),
+            child: ClipRect(
+              child: Banner(
+                message: "Populer",
+                location: BannerLocation.bottomStart,
+                color: Colors.red,
+                child: Row(children: <Widget>[
+                  Image.asset(
+                    'assets/img1.png',
+                    width: 200,
+                  ),
+                  Image.asset(
+                    'assets/img2.webp',
+                    width: 200,
+                  ),
+                ]),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
